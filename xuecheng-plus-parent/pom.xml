@@ -1,17 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-
     <modelVersion>4.0.0</modelVersion>
-
-    <!-- 学成在线父项目坐标    -->
     <groupId>com.xuecheng</groupId>
     <artifactId>xuecheng-plus-parent</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>xuecheng-plus-parent</name>
     <description>xuecheng-plus-parent</description>
+    <packaging>pom</packaging>
 
-    <!--properties标签的作用：在标签内可以把版本号作为变量进行声明，后面dependency中用到版本号时可以用${变量名}的形式代替，这样做的好处是：当版本号发生改变时，只有更新properties标签中的变量就行了，不用更新所有依赖的版本号转载    -->
     <properties>
         <java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -36,10 +33,7 @@
         <elasticsearch.version>7.12.1</elasticsearch.version>
     </properties>
 
-    <!-- 使用dependencyManagement可以统一管理项目的版本号，确保应用的各个项目的依赖和版本一致，不用每个模块项目都弄一个版本号，不利于管理，当需要变更版本号的时候只需要在父类容器里更新，不需要任何一个子项目的修改；如果某个子项目需要另外一个特殊的版本号时，只需要在自己的模块dependencies中声明一个版本号即可。子类就会使用子类声明的版本号，不继承于父类版本号。-->
-    <!--    与dependencies区别：
-    1)Dependencies相对于dependencyManagement，所有生命在dependencies里的依赖都会自动引入，并默认被所有的子项目继承。
-    2)dependencyManagement里只是声明依赖，并不自动实现引入，因此子项目需要显示的声明需要用的依赖。如果不在子项目中声明依赖，是不会从父项目中继承下来的；只有在子项目中写了该依赖项，并且没有指定具体版本，才会从父项目中继承该项，并且version和scope都读取自父pom;另外如果子项目中指定了版本号，那么会使用子项目中指定的jar版本。-->
+
     <dependencyManagement>
         <dependencies>
 
@@ -193,7 +187,6 @@
 
     </dependencyManagement>
 
-    <!--build标签描述了如何来编译及打包项目，而具体的编译和打包工作是通过build中配置的plugin 来完成    -->
     <build>
         <finalName>${project.name}</finalName>
         <!--编译打包过虑配置-->
@@ -258,4 +251,5 @@
             </plugin>
         </plugins>
     </build>
+
 </project>
